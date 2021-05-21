@@ -33,10 +33,10 @@ export const TASKS = [
   },
   {
     id: 5,
-    title: "Make Scrumboard frontend",
+    projectId: 1,
     description: "sfdsf",
     status: "Code-review",
     assignee: "Anushka",
-    projectId: 1,
+    title: "Make Scrumboard frontend",
   },
 ];

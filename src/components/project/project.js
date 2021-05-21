@@ -3,7 +3,7 @@ import React from "react";
 import Scrumboard from "./scrumboard";
 import SearchBar from "../common/search-bar";
 
-import { fetchProjectTasks } from "../services/tasks";
+import { fetchProjectTasks } from "../../services/tasks";
 
 const Project = ({ match }) => {
   const { projectId } = match.params;
