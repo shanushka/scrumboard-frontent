@@ -1,5 +1,5 @@
 {
-  "name": "react-with-webpack",
+  "name": "scrumboard-frontend",
   "version": "1.0.0",
   "description": "React app built with Webpack and Babel",
   "main": "index.js",
@@ -8,12 +8,12 @@
     "start": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Anubhav Sarkar",
+  "author": "Anushka Shrestha",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.13.1",
-    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.13.5",
     "@babel/preset-react": "^7.12.13",
     "babel-loader": "^8.2.2",
@@ -29,6 +29,7 @@
   "dependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0"
   }
 }

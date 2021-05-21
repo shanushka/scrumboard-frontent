@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import TaskCard from "./task-card";
 
@@ -15,13 +16,10 @@ const Scrumboard = (props) => {
 
   function dragStart(event) {
     event.target.style.opacity = 0.2;
-    console.log("dragStart");
     event.dataTransfer.setData("Text", event.target.id);
   }
 
   function dragEnd(event) {
-    console.log("dragEnd");
-
     event.target.style.opacity = 1;
     document.getElementById("demo").innerHTML =
       "Finished dragging the p element.";
@@ -60,13 +58,11 @@ const Scrumboard = (props) => {
   };
 
   const handleDragLeave = (event) => {
-    console.log("handleDragLeave", event.target);
     event.target.classList.remove("over");
   };
 
   return (
     <div className="scrumboard__wrapper">
-      <h2 className="scrumboard__title">SCRUMBOARD</h2>
       <div className="scrumboard__container">
         {STATUS.map((status) => (
           <div
@@ -77,7 +73,7 @@ const Scrumboard = (props) => {
             onDragEnter={handleDragEnter}
             onDragLeave={handleDragLeave}
           >
-            {status.label}
+            <div className="scrumboard__title">{status.label}</div>
             {tasks.map((task) =>
               status.value === task.status ? (
                 <TaskCard
@@ -92,6 +88,11 @@ const Scrumboard = (props) => {
       </div>
     </div>
   );
+};
+
+Scrumboard.propTypes = {
+  tasks: PropTypes.string,
+  onTaskChanged: PropTypes.func,
 };
 
 export default Scrumboard;

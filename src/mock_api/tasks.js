@@ -31,4 +31,12 @@ export const TASKS = [
     assignee: "Anushka",
     projectId: 1,
   },
+  {
+    id: 5,
+    title: "Make Scrumboard frontend",
+    description: "sfdsf",
+    status: "Code-review",
+    assignee: "Anushka",
+    projectId: 1,
+  },
 ];
