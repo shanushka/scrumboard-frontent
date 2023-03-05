@@ -39,13 +39,13 @@ jobs:
    needs: build
    runs-on: ubuntu-latest
    environment:
-     name: 'Github pages'
+     name: 'github-pages'
      url: ${{ steps.deployment.outputs.page-url }}
 
 
    steps:
    - name: Download artifact from build job
+    id: deployment
      uses: actions/deploy-pages@v1
-     id: deployment
 
 
