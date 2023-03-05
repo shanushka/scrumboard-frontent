@@ -1,0 +1,50 @@
+name: Scrumboard
+on:
+ push:
+   branches: [ "main" ]
+ workflow_dispatch:
+
+
+permissions:
+ contents: read
+ pages: write
+ id-token: write
+jobs:
+ build:
+   runs-on: ubuntu-latest
+   steps:
+   - uses: actions/checkout@v3
+
+
+   - name: Set up Node.js
+     uses: actions/setup-node@v3
+     with:
+       node-version: 18
+       cache: 'npm'
+
+
+   - name: npm install, build, and test
+     run: |
+       npm install
+       npm run webpack
+
+
+   - name: Upload artifact for deployment job
+     uses: actions/upload-artifact@v3
+     with:
+       path: ./build
+
+
+ deploy:
+   needs: build
+   environment:
+     name: 'Github pages'
+     url: ${{ steps.deployment.outputs.page-url }}
+
+
+   steps:
+   - name: Download artifact from build job
+     uses: actions/deploy-pages@v1
+     id: deployment
+
+
