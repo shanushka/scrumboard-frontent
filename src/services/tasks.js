@@ -1,4 +1,4 @@
-import { TASKS } from "../../mock_api/tasks";
+import { TASKS } from "../mock_api/tasks";
 
 /**
  * @returns Default Collaborator expiry.
