@@ -3,7 +3,7 @@
 ### Run the application
 
 1. To install packages
-   yarn
+   npm install
 
 2. To start the application
-   yarn start
+   npm start
