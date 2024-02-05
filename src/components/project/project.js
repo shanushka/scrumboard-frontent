@@ -2,11 +2,14 @@ import React from "react";
 
 import Scrumboard from "./scrumboard";
 import SearchBar from "../common/search-bar";
+import TabBar from "../Tab-bar";
 
 import { fetchProjectTasks } from "../../services/tasks";
 
 const Project = ({ match }) => {
   const { projectId } = match.params;
+
+  console.log("!!!!!!!!!!!!!!project", projectId)
 
   const [tasks, setTasks] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
@@ -43,20 +46,40 @@ const Project = ({ match }) => {
     filterTasks(word);
   };
 
+  const handleChange = (event, newValue) => {
+    setSelectedTab(newValue)
+
+    console.log("handle", event)
+
+  }
+
   console.log("tasks", tasks);
+
+  const [selectedTab, setSelectedTab] = React.useState(0);
+
 
   return (
     <div className="project-main__wrapper">
-      <h1 className="scrumboard__title">SCRUMBOARD</h1>
-      <div className="project__search-wrapper">
-        <div className="project__search-container">
-          <SearchBar onChange={searchTasks} value={searchValue}></SearchBar>
-        </div>
-      </div>
-      <Scrumboard
-        onTaskChanged={updateTask}
-        tasks={searchValue.length > 0 ? filteredTasks : tasks}
-      ></Scrumboard>
+      <TabBar handleChange={handleChange} value={selectedTab}></TabBar>
+      <div class="project-container">
+        {selectedTab === 0 ?
+          <>
+            <div className="project__search-wrapper">
+              <div className="project__search-container">
+                <SearchBar onChange={searchTasks} value={searchValue}></SearchBar>
+              </div>
+            </div>
+        
+
+        <Scrumboard
+          onTaskChanged={updateTask}
+          tasks={searchValue.length > 0 ? filteredTasks : tasks}
+        ></Scrumboard>
+          </> :
+        <div>
+            <h1>Calendar</h1>
+          </div>} 
+    </div>
     </div>
   );
 };

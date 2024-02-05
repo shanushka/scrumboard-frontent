@@ -95,10 +95,11 @@ input:focus {
   display: flex;
   width: 100%;
   align-items: flex-end;
+  justify-content: flex-end;
 }
 
 .project__search-container {
-  width: 300px;
+  width: 300px
 }
 
 .project-main__wrapper {
@@ -108,4 +109,8 @@ input:focus {
 .scrumboard__title {
   margin-bottom: 12px;
   font-weight: 600;
+}
+
+.project-container {
+  padding: 20px;
 }

@@ -4,10 +4,16 @@ const webpack = require("webpack")
 
 module.exports = {
   entry: "./src/index.js",
-  output: { path: path.join(__dirname, "build"), filename: "index.bundle.js", publicPath: '/scrumboard-frontent/'},
+  output: { path: path.join(__dirname, "build"), filename: "index.bundle.js", publicPath: '/'},
   mode: process.env.NODE_ENV || "development",
   resolve: { modules: [path.resolve(__dirname, "src"), "node_modules"] },
-  devServer: { contentBase: path.join(__dirname, "src") },
+  // devServer: { contentBase: path.join(__dirname, "src") },
+  devServer: {
+    historyApiFallback: true,
+
+    static: {
+      directory: path.join(__dirname, "src")
+  }},
   module: {
     rules: [
       {
