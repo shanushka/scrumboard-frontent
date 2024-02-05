@@ -24,6 +24,12 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - name: Install Yarn
+      run: npm install -g yarn
+
+    - name: Install Dependencies
+      run: yarn install --frozen-lockfile
+
     - run: yarn ci
     - run: yarn run build --if-present
 
