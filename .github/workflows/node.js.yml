@@ -23,7 +23,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'yarn'
     - name: Install Yarn
       run: npm install -g yarn
 
@@ -31,4 +30,8 @@ jobs:
       run: yarn install --frozen-lockfile
 
     - run: yarn run build --if-present
+    # Uninstall when you're done
+    - name: Clean up
+      if: always()
+      run: npm uninstall -g yarn
 
