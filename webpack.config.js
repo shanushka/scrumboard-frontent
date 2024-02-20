@@ -27,8 +27,13 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-        use: ["file-loader"],
-      },
+        loader: 'file-loader',
+        options: {
+          name: 'assets/images/[name].[ext]', // Adjust path as needed
+          publicPath: 'dist/',
+          outputPath: 'dist/'
+        }
+      }
     ],
   },
   plugins: [

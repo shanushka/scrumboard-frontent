@@ -3,8 +3,10 @@ import React from "react";
 import Scrumboard from "./scrumboard";
 import SearchBar from "../common/search-bar";
 import TabBar from "../Tab-bar";
+import Timeline from "../Timeline";
 
 import { fetchProjectTasks } from "../../services/tasks";
+import { fetchProject } from "../../services/projects";
 
 const Project = ({ match }) => {
   const { projectId } = match.params;
@@ -14,6 +16,8 @@ const Project = ({ match }) => {
   const [tasks, setTasks] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [filteredTasks, setFilteredTasks] = React.useState([]);
+  // New state for storing the current project data
+  const [currentProject, setCurrentProject] = React.useState(null);
 
   React.useEffect(() => {
     async function fetchTasks() {
@@ -22,7 +26,14 @@ const Project = ({ match }) => {
       setTasks(response);
     }
 
+    async function fetchProjectById(projectId) {
+      console.log("projectId", projectId);
+      const response = await fetchProject(projectId);
+      setCurrentProject(response);
+    }
+
     fetchTasks();
+    fetchProjectById(projectId);
   }, [projectId]);
 
   const updateTask = (id, status) => {
@@ -49,11 +60,7 @@ const Project = ({ match }) => {
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue)
 
-    console.log("handle", event)
-
   }
-
-  console.log("tasks", tasks);
 
   const [selectedTab, setSelectedTab] = React.useState(0);
 
@@ -77,7 +84,9 @@ const Project = ({ match }) => {
         ></Scrumboard>
           </> :
         <div>
-            <h1>Calendar</h1>
+            {currentProject && 
+            <Timeline tasks={tasks}/>
+          }
           </div>} 
     </div>
     </div>

@@ -1,0 +1,41 @@
+.timeline__body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    position: relative;
+    border: 1px solid;
+    height: 70vh;
+  }
+
+.timeline__main-wrapper {
+    overflow: auto;
+}
+
+.timeline__header {
+  display: flex;
+  align-items: center;
+}
+
+.timeline__header-title {
+  margin-right: 16px;
+  font-size: 20px;
+}
+
+.timeline__task {
+    height: 30px;
+    background-color: #85dcb8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #18191A;
+}
+
+.timeline__icon {
+  margin: 4px 8px;
+  cursor: pointer;
+    
+}
+
+.timeline__icon :hover {
+    color: #85dcb8;
+  }

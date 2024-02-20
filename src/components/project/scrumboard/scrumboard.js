@@ -74,12 +74,13 @@ const Scrumboard = (props) => {
             onDragLeave={handleDragLeave}
           >
             <div className="scrumboard__title">{status.label}</div>
-            {tasks.map((task) =>
+            {tasks.map((task, index) =>
               status.value === task.status ? (
                 <TaskCard
                   handleDragEnd={dragEnd}
                   handleDragStart={dragStart}
                   task={task}
+                  key={index}
                 />
               ) : null
             )}

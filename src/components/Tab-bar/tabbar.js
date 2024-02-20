@@ -6,7 +6,7 @@ const TabBar = ({handleChange, value}) =>{
     return (
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
             <Tab label="ScrumBoard" />
-            <Tab label="Calendar" />
+            <Tab label="Timeline" />
         </Tabs>
     );
     
