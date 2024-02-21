@@ -2,8 +2,8 @@ import React from "react";
 
 import Scrumboard from "./scrumboard";
 import SearchBar from "../common/search-bar";
-import TabBar from "../Tab-bar";
-import Timeline from "../Timeline";
+import TabBar from "../tab-bar";
+import Timeline from "../timeline";
 
 import { fetchProjectTasks } from "../../services/tasks";
 import { fetchProject } from "../../services/projects";
