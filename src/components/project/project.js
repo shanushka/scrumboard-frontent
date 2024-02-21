@@ -8,12 +8,17 @@ import Timeline from "../Timeline";
 import { fetchProjectTasks } from "../../services/tasks";
 import { fetchProject } from "../../services/projects";
 
+/**
+ * Shows project in an organization.
+ * @param {*} param0 
+ * @returns 
+ */
 const Project = ({ match }) => {
   const { projectId } = match.params;
   const [tasks, setTasks] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
-  const [filteredTasks, setFilteredTasks] = React.useState([]);
-  // New state for storing the current project data
+  const [selectedTab, setSelectedTab] = React.useState(0);
+
   const [currentProject, setCurrentProject] = React.useState(null);
 
   React.useEffect(() => {
@@ -24,7 +29,6 @@ const Project = ({ match }) => {
     }
 
     async function fetchProjectById(projectId) {
-      console.log("projectId", projectId);
       const response = await fetchProject(projectId);
       setCurrentProject(response);
     }
@@ -33,6 +37,12 @@ const Project = ({ match }) => {
     fetchProjectById(projectId);
   }, [projectId]);
 
+  /**
+   * Updates the status of the task.
+   * 
+   * @param {String} id 
+   * @param {String} status 
+   */
   const updateTask = (id, status) => {
     setTasks(
       tasks.map((task) =>
@@ -41,26 +51,28 @@ const Project = ({ match }) => {
     );
   };
 
-  const filterTasks = (value) => {
-    setFilteredTasks(
-      tasks.filter((task) =>
-        task.title.toLowerCase().match(value.toLowerCase())
-      )
-    );
-  };
+  const filterTasks = tasks.filter((task) =>
+        task.title.toLowerCase().match(searchValue.toLowerCase()))
 
+  /**
+   * Invoked when any value is typed on the search bar.
+   * 
+   * @param {String} word 
+   */
   const searchTasks = (word) => {
     setSearchValue(word);
     filterTasks(word);
   };
 
+  /**
+   * Invoked when tab is changed.
+   * 
+   * @param {*} event 
+   * @param {String} newValue 
+   */
   const handleChange = (event, newValue) => {
     setSelectedTab(newValue)
-
   }
-
-  const [selectedTab, setSelectedTab] = React.useState(0);
-
 
   return (
     <div className="project-main__wrapper">
@@ -73,8 +85,6 @@ const Project = ({ match }) => {
                 <SearchBar onChange={searchTasks} value={searchValue}></SearchBar>
               </div>
             </div>
-        
-
         <Scrumboard
           onTaskChanged={updateTask}
           tasks={searchValue.length > 0 ? filteredTasks : tasks}

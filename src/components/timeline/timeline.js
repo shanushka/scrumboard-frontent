@@ -17,6 +17,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import "../../assests/css/timeline.css";
 import Cell from "./cell";
 
+/**
+ * Timeline Component Page.
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const Timeline = ({ tasks }) => {
   const [currentDate, setcurrentDate] = useState(new Date());
   
@@ -27,11 +33,17 @@ const Timeline = ({ tasks }) => {
     start: firstMonthStart,
     end: thirdMonthEnd,
   });
+  const totalColumns = days.length;
 
   const nextThreeMonths = () => setcurrentDate(addMonths(currentDate, 1));
   const prevThreeMonths = () => setcurrentDate(subMonths(currentDate, 1));
-  const totalColumns = days.length;
 
+  /**
+   * Renders task of a project in the timeline.
+   * 
+   * @param {Date} date 
+   * @returns 
+   */
   const renderTasks = (date) => {
     return tasks.map((task, index) => {
       const parsedStartDate = parseISO(task.startDate);

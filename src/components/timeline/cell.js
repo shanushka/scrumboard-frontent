@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+/**
+ * Cell component.
+ * 
+ * @param {*} param0 
+ * @returns 
+ */
 const Cell = ({ index, columnStart, columnEnd, title }) =>  {
     return (
     <div
