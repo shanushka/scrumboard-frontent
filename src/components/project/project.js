@@ -10,9 +10,6 @@ import { fetchProject } from "../../services/projects";
 
 const Project = ({ match }) => {
   const { projectId } = match.params;
-
-  console.log("!!!!!!!!!!!!!!project", projectId)
-
   const [tasks, setTasks] = React.useState([]);
   const [searchValue, setSearchValue] = React.useState("");
   const [filteredTasks, setFilteredTasks] = React.useState([]);
